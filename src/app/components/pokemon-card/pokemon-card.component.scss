@@ -2,7 +2,10 @@ ion-card {
     border-radius: 15px;
     box-shadow: 0 4px 12px rgba(220, 11, 44, 0.3);
     background-color: #f8f8f8;
-    padding: 0px 16px;
+    padding: 0px 8px;
+    width: 170px;
+    height: 210px;
+    margin: 0;
 }
 
 ion-card-header {
@@ -11,16 +14,22 @@ ion-card-header {
     padding: 0rem;
 }
 
+ion-card-content {
+    padding: 0.5rem;
+    text-align: center;
+}
+
 .pokemon-id {
     font-weight: bold;
     font-size: .8rem;
-    color: #444;
+    color: #9ea5ab;
 }
 
-.pokemon-name {
+.pokemon-nome {
     font-size: 1.2rem;
     font-weight: bold;
     text-transform: capitalize;
+    color: #445c7c;
 }
 
 ion-card-content p {
@@ -34,4 +43,20 @@ img {
     height: auto;
     display: block;
     margin: auto;
+}
+
+.pokemon-tipos {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    margin-top: 15px;
+}
+
+.pokemon-tipo {
+    padding: 4px 8px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: #fff;
 }

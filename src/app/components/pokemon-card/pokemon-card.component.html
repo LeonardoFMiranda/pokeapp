@@ -1,14 +1,15 @@
 <ion-card>
   <img [src]="pokemon.image" alt="{{ pokemon.forms[0]?.name }}" />
   <ion-card-header>
+    <span class="pokemon-nome">{{ pokemon.forms[0]?.name }}</span>
     <span class="pokemon-id">N°{{ pokemon.id }}</span>
-    <span class="pokemon-name">{{ pokemon.forms[0]?.name }}</span>
   </ion-card-header>
   <ion-card-content>
-    <p>
-      <span *ngFor="let tipo of pokemon.types; let last = last">
-        {{ tipo.type.name }}<span *ngIf="!last"> </span>
+    <div class="pokemon-tipos">
+      <span class="pokemon-tipo" [ngStyle]="{ 'background-color': getTypeColor(tipo.type.name) }"
+        *ngFor="let tipo of pokemon.types">
+        {{ tipo.type.name }}
       </span>
-    </p>
+    </div>
   </ion-card-content>
 </ion-card>

@@ -13,7 +13,9 @@
     </header>
 
     <section class="container-pokemon">
-      <app-pokemon-card *ngFor="let pokemon of pokemons" [pokemon]="pokemon"></app-pokemon-card>
+      <ul class="lista-pokemon">
+        <app-pokemon-card *ngFor="let pokemon of pokemons" [pokemon]="pokemon"></app-pokemon-card>
+      </ul>
     </section>
   </main>
 </ion-content>
