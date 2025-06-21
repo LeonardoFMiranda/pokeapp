@@ -1,0 +1,37 @@
+ion-card {
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(220, 11, 44, 0.3);
+    background-color: #f8f8f8;
+    padding: 0px 16px;
+}
+
+ion-card-header {
+    color: white;
+    border-radius: 15px 15px 0 0;
+    padding: 0rem;
+}
+
+.pokemon-id {
+    font-weight: bold;
+    font-size: .8rem;
+    color: #444;
+}
+
+.pokemon-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+ion-card-content p {
+    font-size: 1rem;
+    color: #444;
+}
+
+img {
+    border-radius: 10px;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: auto;
+}
