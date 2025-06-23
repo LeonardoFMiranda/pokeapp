@@ -7,6 +7,13 @@ ion-content {
 
 }
 
+ion-button {
+  --background: transparent;
+  --color: #fff;
+  --border-radius: 8px;
+  --box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
+}
+
 .container {
   text-align: center;
   display: flex;
@@ -97,6 +104,7 @@ ion-content {
 
 .container-pokemon {
   display: flex;
+  flex-direction: column;
   gap: 10px;
   background-color: #fff;
   box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.25) inset;
@@ -125,6 +133,59 @@ ion-content {
   width: 100%;
   padding: 10px;
 }
+
+.form-filtros {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 0.5rem 1rem;
+}
+
+.form-range {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.range-input {
+  width: 20%;
+  height: 30px;
+  background-color: #fff;
+  color: black;
+  border-radius: 8px;
+  border: none;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
+}
+
+.asc-desc-btn {
+  background-color: transparent;
+  color: #8c8c8c;
+  transition: all 0.3s ease;
+}
+
+.asc-desc-btn span {
+  transition: all 0.3s ease;
+}
+
+.range-slider {
+  width: 48%;
+  border-radius: 5px;
+}
+
+ion-range {
+  height: 4px;
+  --bar-background: #eee;
+  --bar-background-active: #dc0b2c;
+  --bar-border-radius: 5px;
+
+  --knob-size: 16px;
+  --knob-background: #dc0b2c;
+  --knob-border-radius: 50%;
+  --knob-box-shadow: none;
+  --knob-border-width: 0;
+}
+
 
 
 
@@ -156,5 +217,26 @@ ion-content {
   .lista-pokemon {
     gap: 10px;
   }
+
+  .form-range {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+  }
+
+  .range-input {
+    width: 100%;
+    height: 30px;
+    background-color: #fff;
+    border-radius: 8px;
+    border: none;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
+  }
+
+  .range-slider {
+    width: 100%;
+    border-radius: 5px;
+  }
+
 
 }

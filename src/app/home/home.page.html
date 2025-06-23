@@ -13,6 +13,31 @@
     </header>
 
     <section class="container-pokemon">
+      <form action="">
+        <div class="form-filtros">
+          <button class="asc-desc-btn" type="button" (click)="toggleSortDirection()">
+            <span *ngIf="sortDirection === 'asc'">Asc &#9650;</span>
+            <span *ngIf="sortDirection === 'desc'">Desc &#9660;</span>
+          </button>
+          <div class="form-range flex-column align-end">
+            <div class="d-flex justify-end align-center" style="gap:10px">
+              <input class="range-input" type="number" [value]="newLowerValue" (input)="onInputChange($event, 'lower')">
+              <p>de</p>
+              <input class="range-input" type="number" [value]="newUpperValue" (input)="onInputChange($event, 'upper')">
+            </div>
+
+            <div class="range-slider">
+              <ion-range aria-label="Dual Knobs Range" [dualKnobs]="true" [min]="minValue" [max]="maxValue"
+                [value]="{ lower: newLowerValue, upper: newUpperValue }" (ionChange)="onRangeChange($event)">
+              </ion-range>
+            </div>
+          </div>
+        </div>
+        <div></div>
+        <div>
+
+        </div>
+      </form>
       <ul class="lista-pokemon">
         <app-pokemon-card *ngFor="let pokemon of pokemons" [pokemon]="pokemon"></app-pokemon-card>
       </ul>

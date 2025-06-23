@@ -1,8 +1,10 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/angular/standalone';
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonRange } from '@ionic/angular/standalone';
 import { PokemonCardComponent } from '../components/pokemon-card/pokemon-card.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { NgxSliderModule } from '@angular-slider/ngx-slider';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -16,7 +18,11 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     IonTitle,
     IonContent,
     PokemonCardComponent,
-    HttpClientModule
+    HttpClientModule,
+    IonButton,
+    IonRange,
+    NgxSliderModule,
+    FormsModule
   ],
 })
 export class HomePage implements OnInit {
@@ -170,6 +176,40 @@ export class HomePage implements OnInit {
   //   }
   // ];
   pokemons: any[] = [];
+
+  minValue = 0;
+  maxValue = 151;
+
+  newLowerValue = 0;
+  newUpperValue = 151;
+
+
+  onRangeChange(event: any) {
+    const rangeValue = event.detail.value;
+    console.log('Slider mudou:', rangeValue);
+    this.newLowerValue = rangeValue.lower;
+    this.newUpperValue = rangeValue.upper;
+    console.log('Valor Lower:', rangeValue.lower);
+    console.log('Valor Upper:', rangeValue.upper);
+  }
+
+  onInputChange(event: any, type: 'lower' | 'upper') {
+    const value = Number(event.target.value);
+    console.log(`Input ${type} mudou:`, value);
+
+    if (type === 'lower') {
+      this.newLowerValue = value;
+    } else {
+      this.newUpperValue = value;
+    }
+
+  }
+
+  sortDirection: 'asc' | 'desc' = 'asc';
+
+  toggleSortDirection() {
+    this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
+  }
 
 
   ngOnInit() {
