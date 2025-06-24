@@ -5,6 +5,7 @@ import { PokemonCardComponent } from '../components/pokemon-card/pokemon-card.co
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { FormsModule } from '@angular/forms';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -22,160 +23,18 @@ import { FormsModule } from '@angular/forms';
     IonButton,
     IonRange,
     NgxSliderModule,
-    FormsModule
+    FormsModule,
+
   ],
 })
 export class HomePage implements OnInit {
-  constructor() { }
+  constructor(private loadingController: LoadingController) { }
+
 
   httpClient = inject(HttpClient);
 
-
-  //   {
-  //     id: 1,
-  //     image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png',
-  //     forms: [{ name: 'bulbasaur' }],
-  //     types: [
-  //       { type: { name: 'grass' } },
-  //       { type: { name: 'poison' } }
-  //     ]
-  //   },
-  //   {
-  //     id: 4,
-  //     image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png',
-  //     forms: [{ name: 'charmander' }],
-  //     types: [
-  //       { type: { name: 'fire' } }
-  //     ]
-  //   },
-  //   {
-  //     id: 7,
-  //     image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png',
-  //     forms: [{ name: 'squirtle' }],
-  //     types: [
-  //       { type: { name: 'water' } }
-  //     ]
-  //   },
-  //   {
-  //     id: 25,
-  //     image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png',
-  //     forms: [{ name: 'pikachu' }],
-  //     types: [
-  //       { type: { name: 'electric' } }
-  //     ]
-  //   },
-  //   {
-  //     id: 124,
-  //     image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/124.png',
-  //     forms: [{ name: 'jynx' }],
-  //     types: [
-  //       { type: { name: 'ice' } },
-  //       { type: { name: 'psychic' } }
-  //     ]
-  //   },
-  //   {
-  //     id: 66,
-  //     image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/66.png',
-  //     forms: [{ name: 'machop' }],
-  //     types: [
-  //       { type: { name: 'fighting' } }
-  //     ]
-  //   },
-  //   {
-  //     id: 23,
-  //     image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/23.png',
-  //     forms: [{ name: 'ekans' }],
-  //     types: [
-  //       { type: { name: 'poison' } }
-  //     ]
-  //   },
-  //   {
-  //     id: 104,
-  //     image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/104.png',
-  //     forms: [{ name: 'cubone' }],
-  //     types: [
-  //       { type: { name: 'ground' } }
-  //     ]
-  //   },
-  //   {
-  //     id: 41,
-  //     image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/41.png',
-  //     forms: [{ name: 'zubat' }],
-  //     types: [
-  //       { type: { name: 'poison' } },
-  //       { type: { name: 'flying' } }
-  //     ]
-  //   },
-  //   {
-  //     id: 63,
-  //     image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/63.png',
-  //     forms: [{ name: 'abra' }],
-  //     types: [
-  //       { type: { name: 'psychic' } }
-  //     ]
-  //   },
-  //   {
-  //     id: 10,
-  //     image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10.png',
-  //     forms: [{ name: 'caterpie' }],
-  //     types: [
-  //       { type: { name: 'bug' } }
-  //     ]
-  //   },
-  //   {
-  //     id: 95,
-  //     image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/95.png',
-  //     forms: [{ name: 'onix' }],
-  //     types: [
-  //       { type: { name: 'rock' } },
-  //       { type: { name: 'ground' } }
-  //     ]
-  //   },
-  //   {
-  //     id: 92,
-  //     image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/92.png',
-  //     forms: [{ name: 'gastly' }],
-  //     types: [
-  //       { type: { name: 'ghost' } },
-  //       { type: { name: 'poison' } }
-  //     ]
-  //   },
-  //   {
-  //     id: 147,
-  //     image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/147.png',
-  //     forms: [{ name: 'dratini' }],
-  //     types: [
-  //       { type: { name: 'dragon' } }
-  //     ]
-  //   },
-  //   {
-  //     id: 198,
-  //     image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/198.png',
-  //     forms: [{ name: 'murkrow' }],
-  //     types: [
-  //       { type: { name: 'dark' } },
-  //       { type: { name: 'flying' } }
-  //     ]
-  //   },
-  //   {
-  //     id: 81,
-  //     image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/81.png',
-  //     forms: [{ name: 'magnemite' }],
-  //     types: [
-  //       { type: { name: 'electric' } },
-  //       { type: { name: 'steel' } }
-  //     ]
-  //   },
-  //   {
-  //     id: 35,
-  //     image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/35.png',
-  //     forms: [{ name: 'clefairy' }],
-  //     types: [
-  //       { type: { name: 'fairy' } }
-  //     ]
-  //   }
-  // ];
-  pokemons: any[] = [];
+  totalPokemons = 0;
+  buscaCompleta = false;
 
   minValue = 0;
   maxValue = 151;
@@ -183,46 +42,125 @@ export class HomePage implements OnInit {
   newLowerValue = 0;
   newUpperValue = 151;
 
+  async presentPokemonLoading() {
+    const loading = await this.loadingController.create({
+      message: this.getRandomLoadingMessage(), 
+      spinner: 'dots', 
+      cssClass: 'pokemon-loading',
+      backdropDismiss: false
+    });
+
+    await loading.present();
+    return loading;
+  }
+
+  getRandomLoadingMessage() {
+    const messages = [
+      'Capturando Pokémons...',
+      'Consultando a Pokédex...',
+      'O Professor Oak está preparando os dados...',
+      'Jogando Pokébolas...',
+    ];
+
+    return messages[Math.floor(Math.random() * messages.length)];
+  }
+
+
+  getTotalPokemons() {
+    console.log('Fetching total number of Pokémon...');
+    this.httpClient
+      .get('https://pokeapi.co/api/v2/pokemon?limit=1')
+      .subscribe((response: any) => {
+        this.totalPokemons = response.count;
+        this.maxValue = this.totalPokemons;
+        this.newUpperValue = this.totalPokemons;
+        this.buscaCompleta = true;
+        console.log('Total de Pokémon:', this.totalPokemons);
+      });
+  }
+
+  pokemons: any[] = [];
+  valorInvalido = false;
 
   onRangeChange(event: any) {
     const rangeValue = event.detail.value;
-    console.log('Slider mudou:', rangeValue);
     this.newLowerValue = rangeValue.lower;
     this.newUpperValue = rangeValue.upper;
-    console.log('Valor Lower:', rangeValue.lower);
-    console.log('Valor Upper:', rangeValue.upper);
+    this.fetchPokemons();
   }
 
   onInputChange(event: any, type: 'lower' | 'upper') {
     const value = Number(event.target.value);
-    console.log(`Input ${type} mudou:`, value);
 
     if (type === 'lower') {
       this.newLowerValue = value;
+      console.log('Lower value changed:', this.newLowerValue);
     } else {
       this.newUpperValue = value;
     }
 
+    this.fetchPokemons();
   }
 
   sortDirection: 'asc' | 'desc' = 'asc';
 
   toggleSortDirection() {
     this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
+    console.log('Sort direction:', this.sortDirection);
+    this.sortPokemons();
   }
 
 
   ngOnInit() {
     console.log(this.pokemons);
     this.fetchPokemons();
+    this.getTotalPokemons();
   }
 
-  fetchPokemons() {
-    this.httpClient
-      .get('https://pokeapi.co/api/v2/pokemon?limit=151')
-      .subscribe((response: any) => {
-        response.results.forEach((pokemon: any, index: number) => {
-          this.httpClient.get(pokemon.url).subscribe((pokemonDetails: any) => {
+  onStateChange() {
+    if (this.buscaCompleta) {
+      this.fetchPokemons();
+    }
+  }
+
+
+  sortPokemons() {
+    this.pokemons.sort((a, b) => {
+      if (this.sortDirection === 'asc') {
+        return a.id - b.id;
+      } else {
+        return b.id - a.id;
+      }
+    });
+  }
+
+  async fetchPokemons() {
+    const offset = this.newLowerValue;
+    const limit = this.newUpperValue - this.newLowerValue;
+
+    console.log(this.newUpperValue, this.newLowerValue)
+
+    this.pokemons = [];
+
+    if (offset > this.newUpperValue) {
+      console.log(offset, this.newUpperValue);
+      console.error('Valor inválido: o offset não pode ser maior que o limite.');
+      return;
+    }
+
+    const loading = await this.presentPokemonLoading();
+
+    if (offset === 0) {
+      this.httpClient
+        .get(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`)
+        .subscribe(async (response: any) => {
+          const requests = response.results.map((pokemon: any) =>
+            this.httpClient.get(pokemon.url).toPromise()
+          );
+
+          const pokemonDetailsArray = await Promise.all(requests);
+
+          pokemonDetailsArray.forEach((pokemonDetails: any) => {
             this.pokemons.push({
               id: pokemonDetails.id,
               image: pokemonDetails.sprites.front_default,
@@ -230,7 +168,32 @@ export class HomePage implements OnInit {
               types: pokemonDetails.types
             });
           });
+
+          this.sortPokemons();
+          await loading.dismiss();
         });
-      });
+    } else {
+      this.httpClient
+        .get(`https://pokeapi.co/api/v2/pokemon?offset=${offset-1}&limit=${limit}`)
+        .subscribe(async (response: any) => {
+          const requests = response.results.map((pokemon: any) =>
+            this.httpClient.get(pokemon.url).toPromise()
+          );
+
+          const pokemonDetailsArray = await Promise.all(requests);
+
+          pokemonDetailsArray.forEach((pokemonDetails: any) => {
+            this.pokemons.push({
+              id: pokemonDetails.id,
+              image: pokemonDetails.sprites.front_default,
+              forms: [{ name: pokemonDetails.name }],
+              types: pokemonDetails.types
+            });
+          });
+
+          this.sortPokemons();
+          await loading.dismiss();
+        });
+    }
   }
 }
