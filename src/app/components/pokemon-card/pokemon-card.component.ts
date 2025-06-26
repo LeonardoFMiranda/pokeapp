@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonImg } from '@ionic/angular/standalone';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pokemon-card',
@@ -20,7 +21,12 @@ export class PokemonCardComponent implements OnInit {
 
   @Input() pokemon: any;
 
-  constructor() { }
+  constructor(private router: Router) { }
+
+  goToDetail(id: number) {
+    console.log(`Navegando para o Pokémon com ID: ${id}`);
+    this.router.navigate(['/pokemon', id]);
+  }
 
   ngOnInit() { }
 

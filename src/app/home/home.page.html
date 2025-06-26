@@ -6,9 +6,13 @@
         <strong>Pokedex</strong>
       </div>
       <nav class="barra-busca">
-        <input class="busca-pokemon" type="text" placeholder="Busque pelo nome ou número">
-        <img class="btn-buscar" src="assets/icon/pokedex-logo.svg" alt="Pokédex Logo"
-          style="width: 30px; height: 30px;" />
+        <form class="d-flex align-center" style="width: 90%;" (submit)="onPokemonSearch($event)">
+          <input class="busca-pokemon" type="text" placeholder="Busque pelo nome ou número" [(ngModel)]="searchTerm"
+            name="search" />
+
+          <img class="btn-buscar" src="assets/icon/pokedex-logo.svg" alt="Pokédex Logo"
+            style="width: 30px; height: 30px; cursor: pointer;" (click)="onPokemonSearch($event)" />
+        </form>
       </nav>
     </header>
 
@@ -20,7 +24,7 @@
             <span *ngIf="sortDirection === 'desc'">Desc &#9660;</span>
           </button>
           <div class="form-range flex-column align-end">
-            <div class="d-flex justify-end align-center" style="gap:10px">
+            <div class="d-flex justify-end align-center" style="gap:10px; margin-bottom: 10px;">
               <input class="range-input" type="number" [value]="newLowerValue" (input)="onInputChange($event, 'lower')">
               <p>de</p>
               <input class="range-input" type="number" [value]="newUpperValue" (input)="onInputChange($event, 'upper')">

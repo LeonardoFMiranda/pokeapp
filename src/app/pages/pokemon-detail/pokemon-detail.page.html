@@ -1,0 +1,50 @@
+<ion-header class="barra-navegacao">
+  <ion-toolbar color="danger">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Pokémon Detalhes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="pagina-detalhe">
+
+  <div class="pokemon-card" *ngIf="pokemon">
+    <div class="top-section">
+      <img
+        [src]="'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/' + pokemon.id + '.png'"
+        class="sprite-pokemon" />
+      <h2 class="nome-pokemon">#{{ pokemon.id }} - {{ pokemon.name | titlecase }}</h2>
+
+      <div class="tipos">
+        <span class="tipo" *ngFor="let tipo of pokemon.types"
+          [ngStyle]="{ 'background-color': getTypeColor(tipo.type.name) }">
+          {{ tipo.type.name | uppercase }}
+        </span>
+      </div>
+    </div>
+
+    <div class="info-section">
+      <h3 class="section-title">Habilidades</h3>
+      <div class="habilidades">
+        <span class="habilidade" *ngFor="let habilidade of pokemon.abilities">
+          {{ habilidade.ability.name | titlecase }}
+        </span>
+      </div>
+
+      <h3 class="section-title">Base Stats</h3>
+      <div class="stats">
+        <div class="stat" *ngFor="let stat of pokemon.stats">
+          <div class="stat-label">
+            <span>{{ stat.stat.name | titlecase }}</span>
+            <strong>{{ stat.base_stat }}</strong>
+          </div>
+          <div class="barra-stat">
+            <div class="valor" [style.width.%]="stat.base_stat / 2"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</ion-content>

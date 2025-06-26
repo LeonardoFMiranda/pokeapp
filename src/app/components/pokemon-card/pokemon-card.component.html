@@ -1,4 +1,4 @@
-<ion-card>
+<ion-card (click)="goToDetail(pokemon.id)">
   <img [src]="pokemon.image" alt="{{ pokemon.forms[0]?.name }}" />
   <ion-card-header>
     <span class="pokemon-id">N°{{ pokemon.id }}</span>

@@ -35,17 +35,17 @@ export class HomePage implements OnInit {
 
   totalPokemons = 0;
   buscaCompleta = false;
-
+  searchTerm: string = '';
   minValue = 0;
-  maxValue = 151;
+  maxValue = 1025;
 
   newLowerValue = 0;
-  newUpperValue = 151;
+  newUpperValue = 1025;
 
   async presentPokemonLoading() {
     const loading = await this.loadingController.create({
-      message: this.getRandomLoadingMessage(), 
-      spinner: 'dots', 
+      message: this.getRandomLoadingMessage(),
+      spinner: 'dots',
       cssClass: 'pokemon-loading',
       backdropDismiss: false
     });
@@ -66,21 +66,22 @@ export class HomePage implements OnInit {
   }
 
 
-  getTotalPokemons() {
-    console.log('Fetching total number of Pokémon...');
-    this.httpClient
-      .get('https://pokeapi.co/api/v2/pokemon?limit=1')
-      .subscribe((response: any) => {
-        this.totalPokemons = response.count;
-        this.maxValue = this.totalPokemons;
-        this.newUpperValue = this.totalPokemons;
-        this.buscaCompleta = true;
-        console.log('Total de Pokémon:', this.totalPokemons);
-      });
-  }
+  // getTotalPokemons() {
+  //   console.log('Fetching total number of Pokémon...');
+  //   this.httpClient
+  //     .get('https://pokeapi.co/api/v2/pokemon?limit=1')
+  //     .subscribe((response: any) => {
+  //       this.totalPokemons = response.count;
+  //       this.maxValue = this.totalPokemons;
+  //       this.newUpperValue = this.totalPokemons;
+  //       this.buscaCompleta = true;
+  //       console.log('Total de Pokémon:', this.totalPokemons);
+  //     });
+  // }
 
   pokemons: any[] = [];
   valorInvalido = false;
+  private inputTimeout: any;
 
   onRangeChange(event: any) {
     const rangeValue = event.detail.value;
@@ -88,6 +89,7 @@ export class HomePage implements OnInit {
     this.newUpperValue = rangeValue.upper;
     this.fetchPokemons();
   }
+
 
   onInputChange(event: any, type: 'lower' | 'upper') {
     const value = Number(event.target.value);
@@ -99,7 +101,29 @@ export class HomePage implements OnInit {
       this.newUpperValue = value;
     }
 
-    this.fetchPokemons();
+    if (this.inputTimeout) {
+      clearTimeout(this.inputTimeout);
+    }
+    this.inputTimeout = setTimeout(() => {
+      this.fetchPokemons();
+    }, 1000);
+  }
+
+  onPokemonSearch(event: Event) {
+    event.preventDefault();
+
+    const search = this.searchTerm.trim().toLowerCase();
+
+    console.log('Search term:', search);
+
+    if (search) {
+      this.pokemons = this.pokemons.filter(pokemon =>
+        pokemon.forms.some((form: any) => form.name.toLowerCase().includes(search)) ||
+        pokemon.id.toString() === search
+      );
+    } else {
+      this.fetchPokemons();
+    }
   }
 
   sortDirection: 'asc' | 'desc' = 'asc';
@@ -114,7 +138,7 @@ export class HomePage implements OnInit {
   ngOnInit() {
     console.log(this.pokemons);
     this.fetchPokemons();
-    this.getTotalPokemons();
+    // this.getTotalPokemons();
   }
 
   onStateChange() {
@@ -174,7 +198,7 @@ export class HomePage implements OnInit {
         });
     } else {
       this.httpClient
-        .get(`https://pokeapi.co/api/v2/pokemon?offset=${offset-1}&limit=${limit}`)
+        .get(`https://pokeapi.co/api/v2/pokemon?offset=${offset - 1}&limit=${limit}`)
         .subscribe(async (response: any) => {
           const requests = response.results.map((pokemon: any) =>
             this.httpClient.get(pokemon.url).toPromise()

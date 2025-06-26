@@ -1,0 +1,103 @@
+.pagina-detalhe {
+  --background: #f9f5f2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .pokemon-card {
+    max-width: 500px;
+    margin: 24px auto;
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+
+    .top-section {
+      margin-bottom: 24px;
+
+      .sprite-pokemon {
+        width: 200px;
+        height: auto;
+        margin-bottom: 10px;
+      }
+
+      .nome-pokemon {
+        font-size: 22px;
+        font-weight: bold;
+        margin: 12px 0;
+        color: #333;
+      }
+
+      .tipos {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 8px;
+
+        .tipo {
+          padding: 6px 12px;
+          border-radius: 12px;
+          color: #fff;
+          font-size: 13px;
+          font-weight: bold;
+        }
+      }
+    }
+
+    .info-section {
+      text-align: left;
+
+      .section-title {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 8px;
+        color: #444;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 4px;
+      }
+
+      .habilidades {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 24px;
+
+        .habilidade {
+          background: #eeeeee;
+          padding: 6px 10px;
+          border-radius: 10px;
+          font-size: 14px;
+          color: #333;
+        }
+      }
+
+      .stats {
+        .stat {
+          margin-bottom: 16px;
+
+          .stat-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: #333;
+          }
+
+          .barra-stat {
+            height: 10px;
+            background: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-top: 4px;
+
+            .valor {
+              height: 100%;
+              background: #4caf50;
+              transition: width 0.4s ease;
+            }
+          }
+        }
+      }
+    }
+  }
+}
