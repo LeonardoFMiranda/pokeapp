@@ -1,3 +1,14 @@
+ion-button {
+  --color: white !important;
+  font-weight: bold;
+}
+
+ion-title{
+  font-size: 20px;
+  font-weight: bold;
+  --color: white !important;
+}
+
 .pagina-detalhe {
   --background: #f9f5f2;
   display: flex;
@@ -50,6 +61,7 @@
 
       .section-title {
         font-size: 18px;
+        text-align: center;
         font-weight: bold;
         margin-bottom: 8px;
         color: #444;
@@ -59,6 +71,7 @@
 
       .habilidades {
         display: flex;
+        justify-content: center;
         flex-wrap: wrap;
         gap: 8px;
         margin-bottom: 24px;
@@ -98,6 +111,33 @@
           }
         }
       }
+
+      .evolutions {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 16px;
+        margin-top: 16px;
+
+        img {
+          width: 80px;
+          height: auto;
+
+          transition: transform 0.3s ease;
+
+          &:hover {
+            transform: scale(1.1);
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .pagina-detalhe {
+    .pokemon-card {
+      max-width: 380px;
     }
   }
 }

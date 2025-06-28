@@ -1,7 +1,9 @@
 <ion-header class="barra-navegacao">
   <ion-toolbar color="danger">
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/home"></ion-back-button>
+    <ion-buttons>
+      <ion-button  (click)="goHome()">
+        Voltar
+      </ion-button>
     </ion-buttons>
     <ion-title>Pokémon Detalhes</ion-title>
   </ion-toolbar>
@@ -43,6 +45,12 @@
             <div class="valor" [style.width.%]="stat.base_stat / 2"></div>
           </div>
         </div>
+      </div>
+      <h3 class="section-title">Evolutions</h3>
+      <div *ngIf="evolutionDetails" class="evolutions">
+        <img *ngFor="let pokemonEvolution of evolutionDetails" (click)="goToDetail(pokemonEvolution.id)"
+          [src]="'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/' + pokemonEvolution.id + '.png'"
+          class="sprite-pokemon" />
       </div>
     </div>
   </div>

@@ -65,21 +65,8 @@ export class HomePage implements OnInit {
     return messages[Math.floor(Math.random() * messages.length)];
   }
 
-
-  // getTotalPokemons() {
-  //   console.log('Fetching total number of Pokémon...');
-  //   this.httpClient
-  //     .get('https://pokeapi.co/api/v2/pokemon?limit=1')
-  //     .subscribe((response: any) => {
-  //       this.totalPokemons = response.count;
-  //       this.maxValue = this.totalPokemons;
-  //       this.newUpperValue = this.totalPokemons;
-  //       this.buscaCompleta = true;
-  //       console.log('Total de Pokémon:', this.totalPokemons);
-  //     });
-  // }
-
   pokemons: any[] = [];
+  originalPokemonList: any[] = [];
   valorInvalido = false;
   private inputTimeout: any;
 
@@ -117,7 +104,7 @@ export class HomePage implements OnInit {
     console.log('Search term:', search);
 
     if (search) {
-      this.pokemons = this.pokemons.filter(pokemon =>
+      this.pokemons = this.originalPokemonList.filter(pokemon =>
         pokemon.forms.some((form: any) => form.name.toLowerCase().includes(search)) ||
         pokemon.id.toString() === search
       );
@@ -138,7 +125,6 @@ export class HomePage implements OnInit {
   ngOnInit() {
     console.log(this.pokemons);
     this.fetchPokemons();
-    // this.getTotalPokemons();
   }
 
   onStateChange() {
@@ -193,6 +179,7 @@ export class HomePage implements OnInit {
             });
           });
 
+          this.originalPokemonList = [...this.pokemons];
           this.sortPokemons();
           await loading.dismiss();
         });
@@ -214,7 +201,7 @@ export class HomePage implements OnInit {
               types: pokemonDetails.types
             });
           });
-
+          this.originalPokemonList = [...this.pokemons];
           this.sortPokemons();
           await loading.dismiss();
         });

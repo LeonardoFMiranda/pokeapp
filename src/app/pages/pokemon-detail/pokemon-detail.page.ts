@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 import {
   IonContent, IonHeader, IonTitle, IonToolbar,
   IonChip, IonList, IonItem, IonProgressBar,
-  IonButtons, IonBackButton
+  IonButtons, IonBackButton,IonButton,IonIcon
 } from '@ionic/angular/standalone';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @Component({
@@ -17,7 +17,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
   imports: [
     IonContent, IonHeader, IonTitle, IonToolbar,
     CommonModule, FormsModule, IonChip, IonList, IonItem,
-    IonProgressBar, HttpClientModule, IonButtons, IonBackButton
+    IonProgressBar, HttpClientModule, IonButtons, IonBackButton,IonButton, IonIcon
   ]
 })
 export class PokemonDetailPage implements OnInit {
@@ -29,7 +29,8 @@ export class PokemonDetailPage implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -37,10 +38,19 @@ export class PokemonDetailPage implements OnInit {
     this.loadPokemon(this.pokemonId);
   }
 
+  goToDetail(id: number) {
+    console.log(`Navegando para o Pokémon com ID: ${id}`);
+    this.router.navigate(['/pokemon', id]);
+  }
+
+  goHome() {
+    this.router.navigate(['/home']);
+  }
+
   loadPokemon(id: number) {
     this.http.get(`https://pokeapi.co/api/v2/pokemon/${id}`).subscribe(pokeData => {
       this.pokemon = pokeData;
-      this.selectedEvolution = pokeData; // define como principal
+      this.selectedEvolution = pokeData;
       this.loadEvolutionChain(id);
     });
   }

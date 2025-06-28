@@ -24,7 +24,6 @@ export class PokemonCardComponent implements OnInit {
   constructor(private router: Router) { }
 
   goToDetail(id: number) {
-    console.log(`Navegando para o Pokémon com ID: ${id}`);
     this.router.navigate(['/pokemon', id]);
   }
 
@@ -52,7 +51,7 @@ export class PokemonCardComponent implements OnInit {
       fairy: '#ffafdc'
     };
 
-    return typeColors[typeName] || '#ccc'; // Cor padrão caso o tipo não exista
+    return typeColors[typeName] || '#ccc'; 
   }
 
 }
